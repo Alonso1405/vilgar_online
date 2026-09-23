@@ -26,6 +26,34 @@ function App() {
   const [busquedaAbierta, setBusquedaAbierta] = useState(false);
   const [marcaFiltro, setMarcaFiltro] = useState("TODAS");
   const [orden, setOrden] = useState("nombre");
+  const [installPrompt, setInstallPrompt] = useState(null);
+
+  useEffect(() => {
+    const manejarInstalacion = (event) => {
+      event.preventDefault();
+      setInstallPrompt(event);
+    };
+
+    window.addEventListener("beforeinstallprompt", manejarInstalacion);
+
+    return () => {
+      window.removeEventListener("beforeinstallprompt", manejarInstalacion);
+    };
+  }, []);
+
+  const instalarVILGAR = async () => {
+    if (!installPrompt) return;
+
+    installPrompt.prompt();
+
+    const resultado = await installPrompt.userChoice;
+
+    if (resultado.outcome === "accepted") {
+      console.log("VILGAR fue instalada");
+    }
+
+    setInstallPrompt(null);
+  };
 
   const productosFiltrados = productos
     .filter((producto) => {
@@ -232,6 +260,23 @@ function App() {
               aria-label="Buscar productos"
             >
               🔍
+            </button>
+
+            {installPrompt && (
+              <button className="install-button" onClick={instalarVILGAR}>
+                📲 Instalar VILGAR
+              </button>
+            )}
+
+            {/* Carrito */}
+            <button
+              className="cart-button"
+              onClick={() => setCarritoAbierto(true)}
+            >
+              🛒
+              <span className="cart-count">
+                {carrito.reduce((total, item) => total + item.cantidad, 0)}
+              </span>
             </button>
 
             <button

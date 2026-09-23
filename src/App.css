@@ -1812,3 +1812,40 @@
     gap: 20px;
   }
 }
+
+.install-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+
+  height: 42px;
+  padding: 0 16px;
+
+  border: 1px solid #d4af37;
+  border-radius: 8px;
+
+  background: #111827;
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.install-button:hover {
+  background: #d4af37;
+  color: #111827;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+  .install-button {
+    height: 38px;
+    padding: 0 10px;
+    font-size: 12px;
+  }
+}

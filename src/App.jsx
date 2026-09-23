@@ -278,16 +278,6 @@ function App() {
                 {carrito.reduce((total, item) => total + item.cantidad, 0)}
               </span>
             </button>
-
-            <button
-              className="cart-button"
-              onClick={() => setCarritoAbierto(true)}
-            >
-              🛒
-              <span className="cart-count">
-                {carrito.reduce((total, item) => total + item.cantidad, 0)}
-              </span>
-            </button>
           </div>
         </div>
       </header>

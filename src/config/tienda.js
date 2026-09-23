@@ -2,7 +2,7 @@ const configuracionTienda = {
   nombre: "VILGAR",
 
   whatsapp: {
-    numero: "522206072260",
+    numero: "522206022087",
   },
 };
 

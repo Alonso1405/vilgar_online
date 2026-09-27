@@ -27,6 +27,11 @@ function App() {
   const [marcaFiltro, setMarcaFiltro] = useState("TODAS");
   const [orden, setOrden] = useState("nombre");
   const [installPrompt, setInstallPrompt] = useState(null);
+  const [mostrarInstalacionIOS, setMostrarInstalacionIOS] = useState(false);
+
+  const esIOS =
+    /iPhone|iPad|iPod/i.test(navigator.userAgent) ||
+    (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
 
   useEffect(() => {
     const manejarInstalacion = (event) => {
@@ -42,17 +47,24 @@ function App() {
   }, []);
 
   const instalarVILGAR = async () => {
-    if (!installPrompt) return;
+    // Android / Chrome / Edge
+    if (installPrompt) {
+      installPrompt.prompt();
 
-    installPrompt.prompt();
+      const resultado = await installPrompt.userChoice;
 
-    const resultado = await installPrompt.userChoice;
+      if (resultado.outcome === "accepted") {
+        console.log("VILGAR fue instalada");
+      }
 
-    if (resultado.outcome === "accepted") {
-      console.log("VILGAR fue instalada");
+      setInstallPrompt(null);
+      return;
     }
 
-    setInstallPrompt(null);
+    // iPhone / iPad
+    if (esIOS) {
+      setMostrarInstalacionIOS(true);
+    }
   };
 
   const productosFiltrados = productos
@@ -236,6 +248,60 @@ function App() {
     cargarCatalogo();
   }, []);
 
+  {
+    mostrarInstalacionIOS && (
+      <div className="install-overlay">
+        <div className="install-modal">
+          <button
+            className="install-close"
+            onClick={() => setMostrarInstalacionIOS(false)}
+          >
+            ×
+          </button>
+
+          <div className="install-logo">
+            <img src="/vilgar-favicon-192.png" alt="VILGAR" />
+          </div>
+
+          <h2>Instalar VILGAR</h2>
+
+          <p>
+            Agrega VILGAR a la pantalla de inicio de tu iPhone para acceder como
+            una aplicación.
+          </p>
+
+          <div className="install-step">
+            <strong>1.</strong>
+            <span>
+              Toca el botón <b>Compartir</b> de Safari.
+            </span>
+          </div>
+
+          <div className="install-step">
+            <strong>2.</strong>
+            <span>
+              Busca y selecciona <b>“Añadir a pantalla de inicio”</b>.
+            </span>
+          </div>
+
+          <div className="install-step">
+            <strong>3.</strong>
+            <span>
+              Toca <b>“Añadir”</b>.
+            </span>
+          </div>
+
+          <button
+            className="install-understood"
+            onClick={() => setMostrarInstalacionIOS(false)}
+          >
+            Entendido
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="app">
       {/* ================= HEADER ================= */}
@@ -262,7 +328,7 @@ function App() {
               🔍
             </button>
 
-            {installPrompt && (
+            {(installPrompt || esIOS) && (
               <button className="install-button" onClick={instalarVILGAR}>
                 📲 Instalar VILGAR
               </button>

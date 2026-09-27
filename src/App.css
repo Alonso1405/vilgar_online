@@ -1849,3 +1849,126 @@
     font-size: 12px;
   }
 }
+
+.install-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  background: rgba(0, 0, 0, 0.65);
+}
+
+.install-modal {
+  position: relative;
+
+  width: 100%;
+  max-width: 420px;
+
+  padding: 32px 26px;
+
+  background: #ffffff;
+  border-radius: 18px;
+
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+
+  text-align: center;
+}
+
+.install-close {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+
+  width: 36px;
+  height: 36px;
+
+  border: none;
+  background: transparent;
+
+  font-size: 28px;
+  color: #555;
+
+  cursor: pointer;
+}
+
+.install-logo img {
+  width: 90px;
+  height: 90px;
+
+  object-fit: cover;
+
+  border-radius: 50%;
+
+  margin-bottom: 12px;
+}
+
+.install-modal h2 {
+  margin: 5px 0 10px;
+
+  color: #111827;
+  font-size: 25px;
+}
+
+.install-modal p {
+  margin-bottom: 24px;
+
+  color: #555;
+  line-height: 1.5;
+}
+
+.install-step {
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 12px;
+
+  padding: 12px;
+
+  margin-bottom: 10px;
+
+  border-radius: 10px;
+
+  background: #f7f7f7;
+
+  text-align: left;
+}
+
+.install-step strong {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  min-width: 28px;
+  height: 28px;
+
+  border-radius: 50%;
+
+  background: #111827;
+  color: #d4af37;
+}
+
+.install-understood {
+  width: 100%;
+
+  margin-top: 15px;
+  padding: 13px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #111827;
+  color: #ffffff;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  cursor: pointer;
+}

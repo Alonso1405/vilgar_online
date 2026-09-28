@@ -900,13 +900,115 @@ function App() {
           <div className="contact-header">
             <span className="section-label">CONTACTO</span>
 
-            <h2>¿Tienes alguna pregunta?</h2>
+            <h2>Estamos para ayudarte</h2>
 
             <p>
-              Estamos para ayudarte. Contáctanos para conocer nuestros
-              productos, presentaciones y opciones de compra.
+              Nuestro equipo está listo para atenderte, resolver tus dudas y
+              ayudarte a encontrar los productos de limpieza que necesitas.
             </p>
           </div>
+
+          {/* EJECUTIVOS */}
+
+          <div className="executives-grid">
+            {/* EJECUTIVA 1 */}
+
+            <div className="executive-card">
+              <div className="executive-image">
+                <img src="/ejecutivos/ejecutivo-1.png" alt="Ejecutiva VILGAR" />
+              </div>
+
+              <div className="executive-info">
+                <span className="executive-label">EJECUTIVA VILGAR</span>
+
+                <h3>Atención y ventas</h3>
+
+                <p>Estoy para ayudarte con nuestros productos y pedidos.</p>
+
+                <button
+                  onClick={() => {
+                    window.open("https://wa.me/5212206022087", "_blank");
+                  }}
+                >
+                  💬 WHATSAPP
+                </button>
+              </div>
+            </div>
+
+            {/* EJECUTIVO 2 */}
+
+            <div className="executive-card">
+              <div className="executive-image">
+                <img src="/ejecutivos/ejecutivo-2.png" alt="Ejecutivo VILGAR" />
+              </div>
+
+              <div className="executive-info">
+                <span className="executive-label">EJECUTIVO VILGAR</span>
+
+                <h3>Atención comercial</h3>
+
+                <p>Atención para clientes, comercios y empresas.</p>
+
+                <button
+                  onClick={() => {
+                    window.open("https://wa.me/5212206072260", "_blank");
+                  }}
+                >
+                  💬 WHATSAPP
+                </button>
+              </div>
+            </div>
+
+            {/* EJECUTIVO 3 */}
+
+            <div className="executive-card">
+              <div className="executive-image">
+                <img src="/ejecutivos/ejecutivo-3.png" alt="Ejecutivo VILGAR" />
+              </div>
+
+              <div className="executive-info">
+                <span className="executive-label">DIRECTIVO VILGAR</span>
+
+                <h3>Atención empresarial</h3>
+
+                <p>Soluciones para empresas, negocios e industria.</p>
+
+                <button
+                  onClick={() => {
+                    window.open("https://wa.me/5215560759708", "_blank");
+                  }}
+                >
+                  💬 WHATSAPP
+                </button>
+              </div>
+            </div>
+
+            {/* EJECUTIVO 4 */}
+
+            <div className="executive-card">
+              <div className="executive-image">
+                <img src="/ejecutivos/ejecutivo-4.png" alt="Ejecutivo VILGAR" />
+              </div>
+
+              <div className="executive-info">
+                <span className="executive-label">EJECUTIVO VILGAR</span>
+
+                <h3>Atención personalizada</h3>
+
+                <p>Con gusto te asesoramos en nuestros productos y pedidos.</p>
+
+                <button
+                  onClick={() => {
+                    window.open("https://wa.me/5215578553790", "_blank");
+                  }}
+                >
+                  💬 WHATSAPP
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* OPCIONES DE CONTACTO */}
 
           <div className="contact-grid">
             <div className="contact-card">
@@ -968,7 +1070,10 @@ function App() {
 
       <footer className="footer">
         <div className="footer-container">
-          {/* INFORMACIÓN DE VILGAR */}
+          {/* =====================================
+        COLUMNA 1 — VILGAR
+    ====================================== */}
+
           <div className="footer-column footer-brand">
             <img
               src="/logo-vilgar.png"
@@ -976,7 +1081,7 @@ function App() {
               className="footer-logo"
             />
 
-            <p>
+            <p className="footer-description">
               Productos de limpieza para tu hogar, negocio, empresa e industria.
             </p>
 
@@ -1003,20 +1108,28 @@ function App() {
             </button>
           </div>
 
-          {/* ENLACES */}
+          {/* =====================================
+        COLUMNA 2 — NAVEGACIÓN
+    ====================================== */}
+
           <div className="footer-column">
             <h3>VILGAR</h3>
 
-            <a href="#">Inicio</a>
+            <a href="#inicio">Inicio</a>
 
             <a href="#productos">Productos</a>
 
             <a href="#productos">Catálogo</a>
 
-            <a href="#">Nosotros</a>
+            <a href="#nosotros">Nosotros</a>
+
+            <a href="#contacto">Contacto</a>
           </div>
 
-          {/* PRODUCTOS */}
+          {/* =====================================
+        COLUMNA 3 — PRODUCTOS
+    ====================================== */}
+
           <div className="footer-column">
             <h3>PRODUCTOS</h3>
 
@@ -1027,10 +1140,15 @@ function App() {
             <a href="#productos">Limpieza del hogar</a>
 
             <a href="#productos">Limpieza empresarial</a>
+
+            <a href="#productos">Limpieza industrial</a>
           </div>
 
-          {/* CONTACTO */}
-          <div className="footer-column">
+          {/* =====================================
+    COLUMNA 4 — CONTACTO Y REDES
+====================================== */}
+
+          <div className="footer-column footer-contact">
             <h3>CONTACTO</h3>
 
             <p>Atención a clientes</p>
@@ -1038,10 +1156,55 @@ function App() {
             <p>WhatsApp</p>
 
             <p>Hogar · Empresas · Industria</p>
+
+            <button
+              className="footer-contact-button"
+              onClick={() => {
+                window.open(
+                  `https://wa.me/${configuracionTienda.whatsapp.numero}`,
+                  "_blank",
+                );
+              }}
+            >
+              ESCRÍBENOS
+            </button>
+
+            {/* QR Y FACEBOOK */}
+
+            <div className="footer-social">
+              {/* QR WHATSAPP */}
+
+              <div className="footer-social-item">
+                <img
+                  src="/QR_VilGar.png"
+                  alt="QR WhatsApp VILGAR"
+                  className="footer-qr"
+                />
+
+                <span>Codigo Qr</span>
+              </div>
+
+              {/* QR FACEBOOK */}
+
+              <div className="footer-social-item">
+                <a
+                  href="https://www.facebook.com/profile.php?id=61594595704465"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="footer-facebook-link"
+                >
+                  <span className="facebook-icon">f</span>
+                  <span>Facebook</span>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* PARTE INFERIOR */}
+        {/* =====================================
+      PARTE INFERIOR
+  ====================================== */}
+
         <div className="footer-bottom">
           <p>
             © {new Date().getFullYear()} VILGAR. Todos los derechos reservados.

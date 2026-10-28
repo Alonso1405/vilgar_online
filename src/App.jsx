@@ -106,22 +106,38 @@ function App() {
     ...new Set(productos.map((producto) => producto.marca)),
   ];
 
+
   const agregarAlCarrito = (producto) => {
     setCarrito((carritoActual) => {
-      const existente = carritoActual.find((item) => item.sku === producto.sku);
+      const existente = carritoActual.find(
+        (item) => item.sku === producto.sku
+      );
 
-      if (existente) {
-        return carritoActual.map((item) =>
-          item.sku === producto.sku
-            ? {
-                ...item,
-                cantidad: item.cantidad + producto.cantidad,
-              }
-            : item,
-        );
+      if (!existente) {
+        return [
+          ...carritoActual,
+          {
+            ...producto,
+            subtotal: Number(
+              (producto.precio * producto.cantidad).toFixed(2)
+            ),
+          },
+        ];
       }
 
-      return [...carritoActual, producto];
+      return carritoActual.map((item) => {
+        if (item.sku !== producto.sku) return item;
+
+        const cantidad = item.cantidad + producto.cantidad;
+
+        return {
+          ...item,
+          cantidad,
+          subtotal: Number(
+            (item.precio * cantidad).toFixed(2)
+          ),
+        };
+      });
     });
   };
 
@@ -432,17 +448,17 @@ function App() {
                                 carritoActual.map((producto) =>
                                   producto.sku === item.sku
                                     ? {
-                                        ...producto,
-                                        cantidad:
-                                          producto.cantidad > 1
-                                            ? producto.cantidad - 1
-                                            : 1,
-                                        subtotal:
-                                          producto.precio *
-                                          (producto.cantidad > 1
-                                            ? producto.cantidad - 1
-                                            : 1),
-                                      }
+                                      ...producto,
+                                      cantidad:
+                                        producto.cantidad > 1
+                                          ? producto.cantidad - 1
+                                          : 1,
+                                      subtotal:
+                                        producto.precio *
+                                        (producto.cantidad > 1
+                                          ? producto.cantidad - 1
+                                          : 1),
+                                    }
                                     : producto,
                                 ),
                               );
@@ -459,12 +475,12 @@ function App() {
                                 carritoActual.map((producto) =>
                                   producto.sku === item.sku
                                     ? {
-                                        ...producto,
-                                        cantidad: producto.cantidad + 1,
-                                        subtotal:
-                                          producto.precio *
-                                          (producto.cantidad + 1),
-                                      }
+                                      ...producto,
+                                      cantidad: producto.cantidad + 1,
+                                      subtotal:
+                                        producto.precio *
+                                        (producto.cantidad + 1),
+                                    }
                                     : producto,
                                 ),
                               );
